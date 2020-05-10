@@ -1,3 +1,18 @@
 <view class="main">
+  <!-- 公共头部 -->
   <MyTitle></MyTitle>
+  <!-- 首页导航 -->
+  <view class="nav_wrap">
+    <!-- 自动滚动区域的组件 -->
+    <scroll-view class="nav" scroll-x >
+      <view 
+        class="nav_item {{index === currentIndexNav ? 'active' : ''}}"
+        wx:for="{{navList}}"
+        wx:key="index"
+        bindtap="activeNav"
+        data-index="{{index}}" >
+        {{item.text}}
+      </view>
+    </scroll-view>
+  </view>
 </view>
