@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "JackVideo",
-  "usingComponents": {}
+  "usingComponents": {
+    "MyTitle": "../../components/MyTitle/MyTitle"
+  }
 }
