@@ -7,6 +7,7 @@ Page({
     navList: [], // 首页导航
     currentIndexNav: 0,   // 首页选中导航index
     swiperList: [], // 轮播图数据
+    videosList: [], // 视频列表
   },
 
   /**
@@ -24,8 +25,7 @@ Page({
   getNavList() {
     let that = this
     wx.request({
-      // url: 'https://easy-mock.com/mock/5c1dfd98e8bfa547414a5278/bili/navList',
-      url: 'http://mock-api.com/mnEe4VnJ.mock/navList',
+      url: 'https://mock-api.com/mnEe4VnJ.mock/navList',
       success(res) {
         const { data } = res
         if (data.code === 0) {
@@ -33,7 +33,7 @@ Page({
             navList: data.data.navList
           })
         }
-      }
+      },
     })
   },
 
@@ -43,12 +43,31 @@ Page({
   getSwiperList() {
     let that = this
     wx.request({
-      url: 'http://mock-api.com/mnEe4VnJ.mock/swiperList',
+      url: 'https://mock-api.com/mnEe4VnJ.mock/swiperList',
       success(res) {
         const { data } = res
         if (data.code === 0) {
           that.setData({
             swiperList: data.data.swiperList
+          })
+        }
+      }
+    })
+  },
+
+  /**
+   * 获取视频列表
+   */
+  getVideosList() {
+    let that = this
+    wx.request({
+      url: 'https://mock-api.com/mnEe4VnJ.mock/videoList',
+      success(res) {
+        const { data } = res
+        console.log('data', data)
+        if (data.code === 0) {
+          that.setData({
+            videosList: data.data.videoList
           })
         }
       }
@@ -63,6 +82,8 @@ Page({
     this.getNavList()
     // 获取轮播图
     this.getSwiperList()
+    // 获取视频列表
+    this.getVideosList()
   },
 
   /**
