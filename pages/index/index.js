@@ -6,13 +6,13 @@ Page({
   data: {
     navList: [], // 首页导航
     currentIndexNav: 0,   // 首页选中导航index
+    swiperList: [], // 轮播图数据
   },
 
   /**
    * 点击首页导航按钮
    */
   activeNav(e) {
-    console.log(123, e)
     this.setData({
       currentIndexNav: e.target.dataset.index
     })
@@ -27,11 +27,28 @@ Page({
       // url: 'https://easy-mock.com/mock/5c1dfd98e8bfa547414a5278/bili/navList',
       url: 'http://mock-api.com/mnEe4VnJ.mock/navList',
       success(res) {
-        console.log(res)
         const { data } = res
         if (data.code === 0) {
           that.setData({
             navList: data.data.navList
+          })
+        }
+      }
+    })
+  },
+
+  /**
+   * 获取轮播图数据
+   */
+  getSwiperList() {
+    let that = this
+    wx.request({
+      url: 'http://mock-api.com/mnEe4VnJ.mock/swiperList',
+      success(res) {
+        const { data } = res
+        if (data.code === 0) {
+          that.setData({
+            swiperList: data.data.swiperList
           })
         }
       }
@@ -44,6 +61,8 @@ Page({
   onLoad: function (options) {
     // 获取导航数据
     this.getNavList()
+    // 获取轮播图
+    this.getSwiperList()
   },
 
   /**
