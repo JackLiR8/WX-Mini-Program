@@ -1,0 +1,4 @@
+<view>
+  <!-- 公共头部 -->
+  <MyTitle></MyTitle>
+</view>
