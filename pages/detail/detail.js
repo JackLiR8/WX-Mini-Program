@@ -7,6 +7,7 @@ Page({
   data: {
     videoInfo: null,  // 视频详情
     otherList: [],  // 推荐视频
+    commentData: null, // 评论数据
   },
 
   /**
@@ -46,12 +47,31 @@ Page({
   },
 
   /**
+   * 获取视频评论
+   */
+  getCommentList(id) {
+    let that = this
+    wx.request({
+      url: 'https://mock-api.com/mnEe4VnJ.mock/commentList?id=' + id,
+      success(res) {
+        const { data } = res
+        if (data.code === 0) {
+          that.setData({
+            commentData: data.data.commentData
+          })
+        }
+      }
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     let { id: videoId } = options
     this.getCurrentVideo(videoId)
     this.getOthersList(videoId)
+    this.getCommentList(videoId)
   },
 
   /**

@@ -42,4 +42,31 @@
       </view>
     </navigator>
   </view>
+  <!-------------- 评论列表 ------------>
+  <view class="comment_wrap">
+    <view class="comment_title">
+      评论（{{commentData.commentTotalCount}}）
+    </view>
+    <view class="comment_list">
+      <view
+        wx:for="{{commentData.commentList}}"
+        wx:key="index"
+        class="comment_item">
+        <!-- 左侧 -->
+        <view class="comment_user">
+          <image src="{{item.userIconSrc}}" mode="widthFix"></image>
+        </view>
+        <!-- 右侧 -->
+        <view class="comment_info">
+          <view class="comment_detail">
+            <text class="author">{{item.username}}</text>
+            <text class="date">{{item.commentDate}}</text>
+          </view>
+          <view class="comment_content">
+            {{item.commentInfo}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
