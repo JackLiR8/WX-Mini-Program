@@ -5,14 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    videoInfo: null,  // 视频详情
   },
 
   /**
    * 根据id获取视频信息
    */
   getCurrentVideo(id) {
-
+    let that = this
+    wx.request({
+      url: 'https://mock-api.com/mnEe4VnJ.mock/videoDetail?id=' + id,
+      success(res) {
+        const { data } = res
+        if (data.code === 0) {
+          that.setData({
+            videoInfo: data.data.videoInfo
+          })
+        }
+      }
+    })
   },
 
   /**
@@ -20,7 +31,7 @@ Page({
    */
   onLoad: function (options) {
     let { id: videoId } = options
-    
+    this.getCurrentVideo(videoId)
   },
 
   /**
